@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>1d Game Workshop - 1d Games Workshop</title>
   <link rel="stylesheet" href="/1d/css/bundle.css">
 </head>
@@ -16,10 +16,57 @@
 
   <main>
     <h1>1d Games Workshop</h1>
+<h2>What are we doing?!</h2>
+<p>We're going to make our own video game console! It will be controlled with a single button controller, and the screen will be a string of fairy lights. The entire thing can be powered from a battery pack.</p>
+<p>We've designed this for EMF, so you can use on your tent/camper van. The fairy lights are waterproof but the computer and button are <em>not</em>, so just be careful how you attach it!</p>
+<p>By the end of this session you will have a working game console, and the skills to edit the code and make changes afterwards. We hope you have fun and we look forward to playing your games!</p>
+<h2>Who can do it</h2>
+<p>This workshop is aimed at people aged roughly 12+ (but we're not checking). You do not need to have any electronics and/or programming experience.
+If you do have that experience, there are some advanced sections where you can take things further. But our aim is for everyone to have a game console within an hour!</p>
+<h2>What you need</h2>
+<p>If you are attending the workshop at EMF you will need to buy a complete kit with (almost) all the materials needed for the workshop. This is £28 (cost price). You will also need a laptop to do some (light) programming.
+You <em>might</em> need a USB C-C cable if your computer doesn't have any USB-A ports. Or a dongle. Or, if you have the EMF Tildagon badge, you can use the lanyard!
+It is <em>nice</em> to have a power bank to run the games from without a computer later, but also any powered USB port can work.</p>
+<h1>The Kit</h1>
+<p>The kit contains the following items. If you are following along outside EMF, this is your shopping list. If you are in EMF you can skip this bit.</p>
+<ul>
+<li>A <a href="https://shop.pimoroni.com/products/plasma-2350-w">Pimoroni Plasma 2350W</a> microcomputer. This is based on the Raspberry Pi Pico 2350 (W), and code is mostly compatible but we will use the Pimoroni plasma library so it will need adapting.</li>
+<li>A length of WS2812B addressable LED lights (5m/50 lights is good, more is always fun too!)</li>
+<li>An appropriate USB cable to connect a computer/power bank to the Plasma.</li>
+<li>A ~2m length of dual core cable (the controller lead)</li>
+<li>Some kind of button. For example a <a href="https://shop.pimoroni.com/products/colourful-arcade-buttons">Colourful Arcade Button from Pimoroni</a>
+<ul>
+<li>There is also a 3d printable enclosure (<a href="/1d/downloads/arcade_button_holder.stl">STL</a>, <a href="/1d/downloads/arcade_button_holder.step">STEP</a>) I made for these buttons, that will be useful but you could equally make one out of card or an old yoghurt pot.</li>
+</ul>
+</li>
+<li>Some soldering skills to connect it all together. (the EMF kit is pre-prepared)
+<ul>
+<li>The EMF kit has a 2-pin header soldered to the TX and GND pins nearest the USB port. When you get to that part of the guide either solder directly or add headers/other connectors.</li>
+</ul>
+</li>
+</ul>
+<p>Pimoroni sell a <a href="https://shop.pimoroni.com/products/wireless-plasma-kit?variant=40372594704467">Wireless Plasma kit (No Bottle)</a> that includes a good LED strip, the Plasma 2350W and a USB A-C cable.</p>
+<h1>The Guide</h1>
+<p>The guide is split into the following chapters. We'll start together but if you get ahead that is fine:</p>
+<ol>
+<li><a href="/1d/1">Setting up the computer</a></li>
+<li><a href="/1d/2">Editing and running code on the Plasma</a></li>
+<li><a href="/1d/3">Making the controller</a></li>
+<li><a href="/1d/4">Adding the fairy lights</a></li>
+<li><a href="/1d/5">Making our first game</a></li>
+<li><a href="/1d/6">Making the tricky second game</a></li>
+<li><a href="/1d/7">Making a wifi-enabled game!</a></li>
+<li><a href="/1d/8">Advanced ideas</a></li>
+<li><a href="/1d/9">Resources and References</a></li>
+</ol>
+<p>This guide will remain online if you need to refer back. If after the workshop you have any issues, or something breaks, I'm happy to help, please email me at <a href="mailto:ben@kirman.org">ben@kirman.org</a>.</p>
+<p>During EMF I will keep an eye on emails, you can also find me at the <a href="https://manky.website">Museum of Manky Tea Towels</a> installation at EMF, or by phone on 8695 (TOWL). I'm happy to help you debug or fix issues. I'm even happier to see your game working!</p>
 <p><a href="/1d/credits">credits</a></p>
+<p>Licence</p>
+<h1>The Code</h1>
+<p>The code for this workshop has been released under a free, libre, open source licence. <a href="https://github.com/bkirman/1d_engine">You can access and download it from Github</a>.</p>
 
   </main>
-  <a href="n">Next -&gt;</a>
+  <a href="/1d/1">Next -&gt;</a>
 <footer></footer>
 </body>
-</html>

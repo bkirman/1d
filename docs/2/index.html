@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - 2. Editing and running code on the Plasma</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link">hello</a>
+</div>
+<nav>
+    <a href="/1d/1">&lt;- Previous</a>
+</nav>
+
+
+  <main>
+    <h1>2. Editing and running code on the Plasma</h1>
+<p>Now let's look at how we will be editing the code. Let's just make a light flash on and off.</p>
+<p>With Thonny open, look at the left side of the screen. The top part is the file system of your computer. This is handy if you are programming on your computer and copying it over. However for this guide, we will code directly onto the Plasma device. The bottom box should look something like this:</p>
+<picture><source type="image/webp" srcset="/1d/img/i8BF6W2eLH-362.webp 362w"><img src="/1d/img/i8BF6W2eLH-362.jpeg" alt="A screenshot of Thonny, showing the file system on the Plasma" width="362" height="185"></picture>
+<p>Double click the <code>main.py</code> here, and it will open that file in the main Thonny window.</p>
+<p>If you haven't done much programming before, don't panic. We're here to help, and you can't break the Plasma. If something goes wrong, ask for help. We can always give you a new copy of this file.</p>
+<p>This file is the code that runs on the Plasma when it is powered up. The grey lines that start with # are comments, and the Plasma does not run these lines, so we've used them to tell you a bit more about what is going on.</p>
+<p>In the menu at the top of the Thonny window there are a few key buttons to know about. The save icon is important because we must manually save our changes to the Plasma.</p>
+<p>The next button is the green play button. Press that one now.</p>
+<p>The light on the Plasma should turn green! The plasma is running this code. But there isn't much to see yet. Let's make it interactive.</p>
+<p>Look at the Plasma board, next to the green bit of circuitboard there are 3 buttons - <code>RESET</code>, <code>BOOT</code>, and <code>A</code>. Reset is used to reset the Plasma. If your code ever gets stuck this is just like switching it off and on again. Try it now if you like.</p>
+<p>The Boot button is forbidden knowledge.</p>
+<p>A, is a button we can use as an input into our games. Press it now!</p>
+<p>Nothing happens :( we need to tell the Plasma to &quot;listen&quot; for the buttons and to do something with it.</p>
+<p>Press the 🛑 stop button in Thonny to stop the Plasma from running the code. It will give you an error but don't worry, it's just complaining because we stopped it. We must stop the Plasma to edit the code.</p>
+<p>Back in the code, look for line 24. It is below a comment that says <code># Connect the controller on the line below</code></p>
+<p>Let's follow that instruction. Click on the empty white area below that, on line 24, and type the following:</p>
+<p>    <code>    engine.setButtons(buttons)</code></p>
+<p>We're using a language called Python, which is easy to read but has a very strict rule about indentation. Code must always be tidily aligned otherwise you will get errors and bugs.</p>
+<p>So, you should be sure there are 4 space characters at the beginning of the line you just wrote. The first <code>e</code> you wrote on line 24 should be directly below the <code>#</code> on line 23.</p>
+<p>Once you have done, press play.</p>
+<p>The light turns greeen again. But now see what happens when you press the <code>A</code> button on the Plasma.</p>
+<p>Congrats! You have made Pressy Pressy Lighty Lighty!</p>
+<p>Have a read through the <code>main.py</code> file, to see what is happening, but don't change anything else for now. We'll get to that later.</p>
+<p><a href="/1d/3">Next -&gt;</a></p>
+<h2>Things that might have gone wrong</h2>
+<p>An <code>IndentationError: unexpected indent</code> error means that the code isn't aligned properly. Everything up to and including <code>def main():</code> should have no spaces before it, and everything afterwards should have 4 spaces at the front. (until line 50)</p>
+<p>An error like <code>device is busy</code> or <code>back end not ready</code> means that code is already running. Press stop 🛑 in Thonny and try again.</p>
+<h2>Advanced</h2>
+<p>The Plasma is programmed using Micropython. This is like Python but micro-er. If you've programmed in Python you will be very familiar, but note that Micropython does not have the full power and libraries available. The Plasma only has 4mb of memory!</p>
+<p><a href="https://micropython.org/">The reference guide for MicroPython</a> details what language features are available.</p>
+<p>You can also program the Pico using Circuitpython, or even C. But the workshop is written for Micropython, and it can do everything we need.</p>
+
+  </main>
+  <a href="/1d/3">Next -&gt;</a>
+<footer></footer>
+</body>

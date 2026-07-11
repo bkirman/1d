@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - 1. Setting up the computer(s)</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link">hello</a>
+</div>
+<nav>
+    <a href="/1d/">&lt;- Previous</a>
+</nav>
+
+
+  <main>
+    <h1>1. Setting up the computer(s)</h1>
+<p>You will need a computer to be able to program our mini computer. We will be using Thonny, which is a simple free and open source editor that is perfect for our purposes.</p>
+<p>Download and install the <a href="https://thonny.org/">Thonny IDE</a> (Linux/Mac/Win)</p>
+<p>Once it is installed, run it.</p>
+<p>In the kit, find the Plasma 2350W in the black antistatic bag - this will be the brain of the system. Remove it from the package and take a look at it - this thing is cool - it's a whole computer! For the rest of the guide we'll just call it the &quot;Plasma&quot;.</p>
+<picture><source type="image/webp" srcset="/1d/img/tljMTRHda3-667.webp 667w"><img src="/1d/img/tljMTRHda3-667.jpeg" alt="A photograph of the Plasma 2350W board from Pimoroni, showing components mounted on a tiny pcb" width="667" height="269"></picture>
+<p>Plug in the Plasma to your computer, using the USB cable. The Plasma should light up an LED next to the rainbow icon 🌈.</p>
+<p>Now we need to tell Thonny to connect. We do this at the bottom right of the Thonny Window. It might say <code>&quot;Local Python 3...&quot;</code> or similar. Click this text and a menu will pop up. Select <code>MicroPython (Raspberry Pi Pico) Board in FS Mode</code>.</p>
+<picture><source type="image/webp" srcset="/1d/img/_GtIxaq8W8-809.webp 809w"><img src="/1d/img/_GtIxaq8W8-809.jpeg" alt="A screenshot of Thonny, and the MicroPython option selected in the menu" width="809" height="300"></picture>
+<p>You should now see a list of files on the left hand side. You should also see something in the &quot;Shell&quot; window at the bottom. Something like <code>&quot;MicroPython cyw43-breakout/1.27.0,   on 2026-03-02; Pimoroni Plasma 2350 (LTE + WiFi) with RP2350&quot;</code>. This is the Plasma telling us about itself. Below that is three chevrons: <code>&gt;&gt;&gt;</code>. Click here any type <code>print(&quot;Hello EMF&quot;)</code> and hit return. It should then say &quot;Hello EMF&quot;. That code was running on your Plasma!</p>
+<p>This is the main way we are going to speak to our Plasma. The next step is to investigate the code a bit.</p>
+<p><a href="/1d/2">Next -&gt;</a></p>
+<h3>Plasma v Pico?</h3>
+<p>You might already notice there is a bit of mixed language here. Sometimes I'll call it one thing or the other, and sometimes interfaces will too (i.e. Thonny!). We are technically working with the Pimoroni Plasma 2350W board, which uses the RP2350 chip from Raspberry Pi. Raspberry Pi have their own device called the <a href="https://www.raspberrypi.com/products/raspberry-pi-pico-2/">&quot;Raspberry Pi Pico 2&quot;</a>. Both are mostly compatible with each other, but Pimoroni did a great job making the Plasma easy to work with for LED strips in particular. It's perfect for us, where the Pico would require more wiring and code.</p>
+<p>Since it is compatible, you can also run most Pi Pico examples on the Plasma, and follow tutorials (but you can't run most Plasma examples on the Pico, because of the custom LED features).</p>
+<p>If you do follow external tutorials, just be sure to use the <a href="https://shop.pimoroni.com/products/plasma-2350-w">pinout guide from Pimoroni</a> if you need to add components.</p>
+<h2>Things that might have gone wrong</h2>
+<p>If Thonny does not recognise the Plasma, check the lights on the Plasma - is it green? Try pressing the RESET button. Did that work?
+Try double checking the menu at the bottom right of Thonny.</p>
+<p>If it is still not recognised, try using a different USB cable or USB port on your computer.</p>
+<h2>Advanced</h2>
+<p>We are using Thonny because it is clean and simple to use, but you might prefer working in a tool like VS Code. <a href="https://marketplace.visualstudio.com/items?itemName=raspberry-pi.raspberry-pi-pico">Raspberry Pi have made an official plugin</a> to support it. This is how I work because it can also integrate with Git or other VCSs.</p>
+
+  </main>
+  <a href="/1d/2">Next -&gt;</a>
+<footer></footer>
+</body>

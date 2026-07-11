@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - 4. Adding the Fairy Lights</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link">hello</a>
+</div>
+<nav>
+    <a href="/1d/3">&lt;- Previous</a>
+</nav>
+
+
+  <main>
+    <h1>4. Adding the Fairy Lights</h1>
+<p>Super Pressy Pressy Lighty Lighty Champion Edition is cool, but let's make it 50 times as cool!</p>
+<p>It's finally time to add the Fairy Lights.</p>
+<p>Get the bundle of lights out of the kit, unravel it, and find the end with three exposed wires. These fairy lights use a standard called WS2812B</p>
+<picture><source type="image/webp" srcset="/1d/img/uHCUHhof-1-4000.webp 4000w"><img src="/1d/img/uHCUHhof-1-4000.jpeg" alt="A photo of the end of the LED wire, showing 3 exposed parts of wire." width="4000" height="2250"></picture>
+<p>The gold/copper looking wire is the 5 volt power, that will power the fairy lights. The opposite wire is the ground wire. The middle wire is the data wire, where the signals are sent to the LEDs from the Plasma.</p>
+<p>Disconnect the Plasma from the USB cable now. Voltage spikes can hurt the LEDs, so let's be cautious and ensure it is powered off. You can leave your controller attached, but might find it easier to work with it disconnected.</p>
+<p>Using a tiny flat head screwdriver, unscrew the 5V, DAT, and (-) screws a few turns. Leave the CLK one screwed in. We don't need it.</p>
+<p>One by one, carefully insert each wire into the corresponding hole at the end of the Plasma, and screw the terminals down. Make sure they are firmly in and don't fall out.</p>
+<ul>
+<li>Gold/copper/dotted goes to <code>5V</code></li>
+<li>Middle goes to <code>DAT</code></li>
+<li>Other goes to <code>(-)</code></li>
+</ul>
+<picture><source type="image/webp" srcset="/1d/img/CXXcUN6b7i-4000.webp 4000w"><img src="/1d/img/CXXcUN6b7i-4000.jpeg" alt="A photo showing the LED wires attached to the terminals on the Plasma" width="4000" height="2250"></picture>
+<p>This can take a few attempts - you might benefit from your phone torch and someone with good eyesight, to ensure it is lined up. Make absolutely sure there are no rogue strands of wire floating around. This can cause a short circuit.</p>
+<h2>Let there (hopefully) be light</h2>
+<p>If you disconnected the controller, reconnect it now. Plug the USB back into your computer and into the Plasma. Push the button.</p>
+<p>Extreme Super Pressy Pressy Lighty Lighty Championship Edition DX!</p>
+<p>This is cool but let's make it into more of a game. First of all, if your lights are in a pile, try to find a way to lay it out in more of a line (or wobbly line!). Maybe we can hang it from the roof?</p>
+<p><a href="/1d/5">Next -&gt;</a></p>
+<h2>Things that might have gone wrong</h2>
+<p>If things don't light up, first make sure that the Plasma is playing, by hitting the play button in Thonny. If there's still no sign of life, and the Plasma LED is working, then disconnect and try reconnecting the LED strip again. The wires are quite flimsy so might need a bit more stripping. We can help with this.</p>
+<h2>Advanced</h2>
+<p>The Fairy lights we are using are based on the WS2812 standard (sometimes called &quot;NeoPixel&quot;). The other common standard is &quot;DotStar&quot;, which uses 4 wires. The Plasma supports both. You can read about <a href="https://learn.adafruit.com/adafruit-dotstar-leds/overview">the differences</a>, but broadly, Dotstar is much faster but more expensive.</p>
+<p>If you buy your own WS2812 LED strips, a few things to watch out for:</p>
+<ul>
+<li>Some LED strips use RGB colour order, and some use GRB order. In my experience it is often random even when you get two identical strips! Especially from discount retailers like AliExpress or Amazon. If the colours look weird, this is almost certainly the problem. See the <code>settings.py </code> file for info on how to change this.</li>
+<li>If you choose to get a longer strip with hundreds of LEDs, you need to think about power. 300 LEDs, set to white, at full brightness, at 5v, is going to be roughly 18 Amps, which will likely kill the Plasma. You will need an external power source, powering the LED strip directly (i.e. at the &quot;tail&quot;). You can find 5V DC to mains adapters online, but be sure to pick one with enough amps. For example a typical USB-A charger port is only 1 or 2 amps. You can also &quot;back power&quot; the Plasma, by powering the strip from the other end, the Plasma does not need its own power and can draw from the strip. There are resources online and <a href="https://learn.adafruit.com/adafruit-neopixel-uberguide/powering-neopixels">Adafruit has a good starting guide</a>.</li>
+<li>The longer the wire, the more you will get voltage drops at 5v, so you might need multiple power adapters. This is beyond the scope of this guide.</li>
+</ul>
+
+  </main>
+  <a href="/1d/5">Next -&gt;</a>
+<footer></footer>
+</body>
