@@ -26,7 +26,7 @@
 <p>Change the game in <code>main.py</code> to load <code>games.LiteBeer()</code> (because we are going to light up some beer...). Run the game to see how it works.</p>
 <p>The green dot is the &quot;target&quot; - some drinks only need half a glass. Beer needs to be full to the top. Press and hold the button to fill the glass! It randomly chooses one of ale, lager, red wine, or white wine.</p>
 <p>Let go of the button when you are near the target, but don't overfill, or underfill, or you will lose.</p>
-<p>As with Bendy Snake, this provides some fun options. If you have a <em>dry</em> plastic glass, put the entire LED strip inside the glass, with the Plasma at the bottom. The top layer of LEDs will be the foam on the drink (if it has it!). Maybe the usb cable is the straw?!</p>
+<p>As with Bendy Snake, this provides some fun options. If you have a relatively dry plastic glass, put the entire LED strip inside the glass, starting from the loose end, and leave the Plasma and button outside the glass. The top layer of LEDs will be the foam on the drink (if it has it!). The LED strip is water resistant at IP67, so in theory can withstand being under 1m of water for 30 minutes. I'm not sure how that translates to beer, but a slightly damp used cup is fine. The plasma and button definitely should be kept dry!! At home you might use glass beads to help fill the gaps.</p>
 <h2>Connecting to Wifi</h2>
 <p>Find the line in <code>init</code> that starts with a <code>#</code> comment character, and the line below:</p>
 <pre><code>        #connect(settings.WIFI_SSID,settings.WIFI_PWD, verbose=True,connected= self.getDrink)
