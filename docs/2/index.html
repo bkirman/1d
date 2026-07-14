@@ -4,13 +4,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>1d Game Workshop - 2. Editing and running code on the Plasma</title>
   <link rel="stylesheet" href="/1d/css/bundle.css">
+  <link rel="stylesheet" href="/1d/css/custom.css">
 </head>
 <body>
   <div id="main-header">
-    <a href="/" id="root-link">hello</a>
+    <a href="/" id="root-link"><picture><source type="image/webp" srcset="/1d/img/Z3wwqDl-d3-715.webp 715w"><img src="/1d/img/Z3wwqDl-d3-715.jpeg" alt="A string of fairy lights made from the EMF logo spell out LED" width="715" height="143"></picture></a>
 </div>
 <nav>
+    
     <a href="/1d/1">&lt;- Previous</a>
+    
 </nav>
 
 
@@ -24,20 +27,20 @@
 <p>This file is the code that runs on the Plasma when it is powered up. The grey lines that start with # are comments, and the Plasma does not run these lines, so we've used them to tell you a bit more about what is going on.</p>
 <p>In the menu at the top of the Thonny window there are a few key buttons to know about. The save icon is important because we must manually save our changes to the Plasma.</p>
 <p>The next button is the green play button. Press that one now.</p>
-<p>The light on the Plasma should turn green! The plasma is running this code. But there isn't much to see yet. Let's make it interactive.</p>
-<p>Look at the Plasma board, next to the green bit of circuitboard there are 3 buttons - <code>RESET</code>, <code>BOOT</code>, and <code>A</code>. Reset is used to reset the Plasma. If your code ever gets stuck this is just like switching it off and on again. Try it now if you like.</p>
-<p>The Boot button is forbidden knowledge.</p>
-<p>A, is a button we can use as an input into our games. Press it now!</p>
+<p>If it isn't already, the light on the Plasma should turn green. The plasma is running this code. But there isn't anything to see yet. Let's make it interactive.</p>
+<p>Look at the Plasma board, next to the green bit of circuitboard there are 3 buttons - <code>RESET</code>, <code>BOOT</code>, and <code>A</code>. If your code ever gets stuck, <code>RESET</code> is like switching it off and on again. Try it now if you like. You might see an error message but it should start running again.</p>
+<p>The <code>BOOT</code> button is forbidden knowledge.</p>
+<p><code>A</code>, is a button we can use as an input into our games. Press it now!</p>
 <p>Nothing happens :( we need to tell the Plasma to &quot;listen&quot; for the buttons and to do something with it.</p>
-<p>Press the 🛑 stop button in Thonny to stop the Plasma from running the code. It will give you an error but don't worry, it's just complaining because we stopped it. We must stop the Plasma to edit the code.</p>
+<p>Press the 🛑 stop button in Thonny to stop the Plasma from running the code. It might give you an error but don't worry, it's just complaining because we stopped it. We must stop the Plasma to edit the code.</p>
 <p>Back in the code, look for line 24. It is below a comment that says <code># Connect the controller on the line below</code></p>
 <p>Let's follow that instruction. Click on the empty white area below that, on line 24, and type the following:</p>
 <p>    <code>    engine.setButtons(buttons)</code></p>
 <p>We're using a language called Python, which is easy to read but has a very strict rule about indentation. Code must always be tidily aligned otherwise you will get errors and bugs.</p>
 <p>So, you should be sure there are 4 space characters at the beginning of the line you just wrote. The first <code>e</code> you wrote on line 24 should be directly below the <code>#</code> on line 23.</p>
 <p>Once you have done, press play.</p>
-<p>The light turns greeen again. But now see what happens when you press the <code>A</code> button on the Plasma.</p>
-<p>Congrats! You have made Pressy Pressy Lighty Lighty!</p>
+<p>The light turns green again. But now see what happens when you press the <code>A</code> button on the Plasma.</p>
+<p>Congrats! You have made our first game: Pressy Pressy Lighty Lighty!</p>
 <p>Have a read through the <code>main.py</code> file, to see what is happening, but don't change anything else for now. We'll get to that later.</p>
 <p><a href="/1d/3">Next -&gt;</a></p>
 <h2>Things that might have gone wrong</h2>
@@ -49,6 +52,8 @@
 <p>You can also program the Pico using Circuitpython, or even C. But the workshop is written for Micropython, and it can do everything we need.</p>
 
   </main>
-  <a href="/1d/3">Next -&gt;</a>
+  
+<a href="/1d/3">Next -&gt;</a>
+
 <footer></footer>
 </body>

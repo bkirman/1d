@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - Advanced Ideas</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+  <link rel="stylesheet" href="/1d/css/custom.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link"><picture><source type="image/webp" srcset="/1d/img/Z3wwqDl-d3-715.webp 715w"><img src="/1d/img/Z3wwqDl-d3-715.jpeg" alt="A string of fairy lights made from the EMF logo spell out LED" width="715" height="143"></picture></a>
+</div>
+<nav>
+    
+    <a href="/1d/7">&lt;- Previous</a>
+    
+</nav>
+
+
+  <main>
+    <h2>Running from a power bank</h2>
+<p>When plugged into a power bank, the Plasma will automatically run whatever is in <code>main.py</code>.</p>
+<p>It's great to use a power bank to power the game, but power banks often switch off if there is not much power draw. If your game has times where nothing is happening for several minutes (e.g. between games), and the controls stop responding, this is probably why. For example the LiteBeer game waits for user input so will probably switch off after a minute or two.</p>
+<p>Sometimes this is desirable but other times you don't want this. That is why you should make an &quot;<a href="https://www.youtube.com/watch?v=ESPSjA4Bb08">attract mode</a>&quot;, or an animation that plays while nothing else is going on. Lighting a few LEDs uses enough power that the power bank will not then switch itself off. You can also buy <a href="https://thepihut.com/products/power-bank-keepalive-adjustable">gadgets that trick power banks</a>, or come up with your own <a href="https://shop.pimoroni.com/products/lipo-amigo?variant=39779302539347">LiPo battery</a> solution.</p>
+<h2>Key Design Challenges</h2>
+<p>Hopefylly you have some ideas for your own games. A few things to think about:</p>
+<ul>
+<li>How do players know what to do? Do you have to explain it or can they figure it out by themselves quickly?</li>
+<li>How do players know when they are done? Is there a game over screen? Or a &quot;you win&quot; screen? The red flashes are quite effective at this. What do other colours signify?</li>
+<li>If you have an attract mode, how do you invite players to press the button, and how do they know when the game has started?</li>
+<li>What about the physical layout of the game - if some of the fairy lights are not visible can it be played?</li>
+<li>Can you wear your game wrapped around your body? Can people still play?</li>
+<li>If it is dark, can we use reflections and diffusing material (like tent fabric) to make different kinds of games?</li>
+</ul>
+<h2>Adding Sound!</h2>
+<p>The Plasma 2350W does not have any way to output sound, but it is relatively easy to add a Piezo buzzer for simple screeches and buzzes.
+Alternatively you might look at sending audio over Bluetooth to a Bluetooth speaker, but this is not trivial.</p>
+<h1>Handy Resources</h1>
+<ul>
+<li>The <a href="https://shop.pimoroni.com/products/plasma-2350-w">Pimoroni website has details on the Plasma</a>, and links to <a href="https://github.com/pimoroni/plasma">example code to explore</a>.</li>
+<li>The Plasma also has a Qw/ST socket to plug in things like this <a href="https://shop.pimoroni.com/products/qwst-pad">adorable game controller</a>.</li>
+<li>Raspberry Pi have a <a href="https://magazine.raspberrypi.com/books/get-started-micropython-pico-2ed">fantastic book about learning MicroPython</a>. The examples are mostly compatible with your Plasma but you might prefer to pick up a <a href="https://thepihut.com/products/raspberry-pi-pico-2">Pi Pico 2 board</a> with headers, and a breadboard to go with it. The base Pi Pico costs less than £5!</li>
+<li>The <a href="https://docs.micropython.org/en/latest/">MicroPython docs</a> are essential. If you have experience with Python, you need these pages to understand what you can and cannot do.</li>
+</ul>
+
+  </main>
+  
+<a href="/1d/">Next -&gt;</a>
+
+<footer></footer>
+</body>

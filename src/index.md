@@ -1,7 +1,6 @@
 ---
 layout: layouts/base.njk
 title: 1d Games Workshop
-prev: p
 next: /1d/1
 ---
 
@@ -15,7 +14,7 @@ We've designed this for EMF, so you can use on your tent/camper van. The fairy l
 By the end of this session you will have a working game console, and the skills to edit the code and make changes afterwards. We hope you have fun and we look forward to playing your games!
 
 ## Who can do it
-This workshop is aimed at people aged roughly 12+ (but we're not checking). You do not need to have any electronics and/or programming experience. 
+Anyone who can navigate a computer and work with a text editor. You do not need to have any electronics and/or programming experience. 
 If you do have that experience, there are some advanced sections where you can take things further. But our aim is for everyone to have a game console within an hour!
 
 ## What you need
@@ -48,15 +47,10 @@ The guide is split into the following chapters. We'll start together but if you 
 6. [Making the tricky second game](/1d/6)
 7. [Making a wifi-enabled game!](/1d/7)
 8. [Advanced ideas](/1d/8)
-9. [Resources and References](/1d/9)
 
 This guide will remain online if you need to refer back. If after the workshop you have any issues, or something breaks, I'm happy to help, please email me at [ben@kirman.org](mailto:ben@kirman.org).
 
 During EMF I will keep an eye on emails, you can also find me at the [Museum of Manky Tea Towels](https://manky.website) installation at EMF, or by phone on 8695 (TOWL). I'm happy to help you debug or fix issues. I'm even happier to see your game working!
 
-[credits](/1d/credits)
-
-Licence
-
-# The Code
-The code for this workshop has been released under a free, libre, open source licence. [You can access and download it from Github](https://github.com/bkirman/1d_engine).
+## More information
+See the [credits](/1d/credits) page for details on where to find the code and libraries used in the workshop.

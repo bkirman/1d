@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - Making a wifi-enabled game!</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+  <link rel="stylesheet" href="/1d/css/custom.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link"><picture><source type="image/webp" srcset="/1d/img/Z3wwqDl-d3-715.webp 715w"><img src="/1d/img/Z3wwqDl-d3-715.jpeg" alt="A string of fairy lights made from the EMF logo spell out LED" width="715" height="143"></picture></a>
+</div>
+<nav>
+    
+    <a href="/1d/6">&lt;- Previous</a>
+    
+</nav>
+
+
+  <main>
+    <h1>Making a wifi-enabled game!</h1>
+<p>This is the most advanced game we'll cover, and it is a weird one. We're going live.</p>
+<p>On the Plasma board, theres a silver chip on a green circuit board. This is the Wifi and Bluetooth module. Incredibly, this tiny computer is able to connect to the internet.</p>
+<p>We've set the wifi passwords for EMF in <code>settings.py</code>. When you get home you can change these to use a 2.4ghz wifi network. Just change the values of the <code>WIFI_SSID</code> and <code>WIFI_PWD</code> variables to your home network. If you have problems connecting at EMF, there is an alternative network <code>emf-open</code> that does not have a password.</p>
+<h2>Testing it</h2>
+<p>Change the game in <code>main.py</code> to load <code>games.LiteBeer()</code> (because we are going to light up some beer...). Run the game to see how it works.</p>
+<p>The green dot is the &quot;target&quot; - some drinks only need half a glass. Beer needs to be full to the top. Press and hold the button to fill the glass! It randomly chooses one of ale, lager, red wine, or white wine.</p>
+<p>Let go of the button when you are near the target, but don't overfill, or underfill, or you will lose.</p>
+<p>As with Bendy Snake, this provides some fun options. If you have a <em>dry</em> plastic glass, put the entire LED strip inside the glass, with the Plasma at the bottom. The top layer of LEDs will be the foam on the drink (if it has it!). Maybe the usb cable is the straw?!</p>
+<h2>Connecting to Wifi</h2>
+<p>Find the line in <code>init</code> that starts with a <code>#</code> comment character, and the line below:</p>
+<pre><code>        #connect(settings.WIFI_SSID,settings.WIFI_PWD, verbose=True,connected= self.getDrink)
+        self.getDrink()
+</code></pre>
+<p>The first line is commented out, so it does not happen, and the second line skips to generating a random drink. We only want to choose the drink when we are connected to the internet, so move the <code>#</code> character to the second line, so it looks like this:</p>
+<pre><code>        connect(settings.WIFI_SSID,settings.WIFI_PWD, verbose=True,connected= self.getDrink)
+        #self.getDrink()
+</code></pre>
+<p>Now when you run, you should see some messages appear from the Plasma in the console. It is telling you about how it is trying to connect to the internet, and will let you know when it does.
+This line of code also means that the game will not start until it is connected. Fingers crossed it works! If not, try changing the Wifi details in <code>settings.py</code>.</p>
+<h2>Adding data from the internet</h2>
+<p>Now, let's adjust this to use data from the internet, and have our game respond to it.</p>
+<p><a href="https://developer.emfcamp.org/">EMF and its attendees offer an interesting range of APIs</a> (Application Programming Interfaces) that we can connect to. There are <a href="https://github.com/public-apis/public-apis">thousands of other free APIs on the web</a> we could use too.</p>
+<p>Let's use the live data from the bars at EMF. They have <a href="https://developer.emfcamp.org/bar/">a guide to the data available and how to access it</a>.</p>
+<p>We can see the live data about the amount of different drinks that remain at each bar. Open this link in a web browser to see an example: <a href="https://bar.emf.camp/api/stocktypes.json">https://bar.emf.camp/api/stocktypes.json</a>.</p>
+<p>Zooming in, we can get just the information about one particular stock item:
+Look at this link: <a href="https://bar.emf.camp/api/stocktype/8.json">https://bar.emf.camp/api/stocktype/8.json</a></p>
+<p>This data is in a format called &quot;JSON&quot;, your web browser has probably made it nice and structured, but it is just data presented as text:</p>
+<p>Here's a snip of some useful data hidden in there:</p>
+<pre><code>    ...
+    &quot;manufacturer&quot;: &quot;Club Mate&quot;, 
+    &quot;name&quot;: &quot;Regular&quot;, 
+    &quot;abv&quot;: null, 
+    &quot;fullname&quot;: &quot;Club Mate Regular&quot;, 
+    &quot;price&quot;: &quot;2.40&quot;, 
+    &quot;logo&quot;: &quot;/media/emf/product-logos/f38444690c6b28a8dbd6a238c1741d36dd6990aa09243dda4c30513292580a8e.png&quot;, 
+    &quot;tasting_notes&quot;: null, 
+    &quot;base_units_bought&quot;: &quot;640.0&quot;, 
+    &quot;base_units_remaining&quot;: &quot;640.0&quot;, 
+    &quot;base_unit_name&quot;: &quot;500ml bottle&quot;, 
+    ...
+</code></pre>
+<p>This tells us that the EMF bars have 640 bottles of Club Mate in their initial stock, each bottle is 500ml and costs £2.40 (when I'm writing this!). There are no tasting notes, and if you've tried Club Mate you know why.</p>
+<p>There is also data there that says how many &quot;units&quot; are remaining (all of them at the start!).</p>
+<p>Let's change our game to use the current stock level to set the &quot;target&quot; for the pour in the game. In that way, the game will get harder as stock reduces over the festival.</p>
+<p>Find the <code>getDrink()</code> method, it is underneath the <code>init()</code> method.</p>
+<p>Edit the following line:</p>
+<pre><code>r = urequests.get()
+</code></pre>
+<p>to look like this:</p>
+<pre><code>r = urequests.get(&quot;https://bar.emf.camp/api/stocktype/&quot;+str(stock)+&quot;.json&quot;)
+</code></pre>
+<p>This adds the correct URI for our code to fetch information about the stock. The next few lines will extract the information from the data that is returned.</p>
+<p>Next, delete the line a little above that says <code>return</code>. This line shortcuts the code so we do not need it any more.</p>
+<p>Run the game and keep an eye on the shell in Thonny: it should tell you that it is connecting to the internet, it should extract some data about a random drink, and tell you about it. It then sets the <code>target</code> to be the percent of that drink left in the bars. Try the game over the weekend and see how the stocks drop.</p>
+<h2>Next Steps</h2>
+<p>As before, it is ok if you have had enough at this point. However, if you skipped the Snake game and still want to explore it, you can find it here:</p>
+<p><a href="/1d/6">Snake Game</a></p>
+<p>Otherwise, congratulations for making it to the end! If you want even more, I have made a page for ideas of where to go next, and what to enhance. Don't forget that the Plasma already has a bunch of other animations and games installed, so do explore those too, and feel free to edit, hack and enhance.</p>
+<p>Thanks for following along and I hope to see your games around the event!</p>
+<p><a href="/1d/8">Further Resources</a></p>
+<p><a href="/1d/">Back to the main page</a></p>
+<h2>Advanced</h2>
+<p>Add new drink types: soft drinks and cider, for example. Check the <a href="https://bar.emf.camp/api/stocktypes.json">list of stocks</a> to find the &quot;id&quot;s of those drinks, and add them to the &quot;stocklines&quot; in the code. Use the existing drink types as a template, change the colour and foamyness to match.</p>
+<p>Adjust the colours of the existing drinks to make them more distinct. For example white wine looks a lot like foamy lager at the moment!</p>
+<p>The EMF Bar API also has a way to tell when the bars are open and closed. Why not make the game so it only works when the bar is open?</p>
+<p>If you have a smart home setup (e.g. Home Assistant) there are also <a href="https://randomnerdtutorials.com/raspberry-pi-pico-w-mqtt-micropython/">MQTT libraries</a> that work with the Plasma. So you can hook up via Zigbee2MQTT and have your fairy lights respond to events in the house, or vice versa. Maybe when you lose a game of snake, it turns the freezer off for an hour? Or if the doorbell rings it triggers a light show at your work or school? The possibilities are endless!</p>
+<p>Since the unit also has Bluetooth, you can do some interesting stuff here too. <a href="https://www.pythontutorials.net/blog/bluetooth-micropython/">This guide will get you started</a>. We can view strength of Bluetooth signals, which basically tells us proximity. Maybe make a game that gets harder the further away your phone is from it? That way you look like a pro and everybody else finds the game harder!</p>
+
+  </main>
+  
+<a href="/1d/8">Next -&gt;</a>
+
+<footer></footer>
+</body>

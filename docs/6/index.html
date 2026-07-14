@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - 6. Making the tricky second game</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+  <link rel="stylesheet" href="/1d/css/custom.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link"><picture><source type="image/webp" srcset="/1d/img/Z3wwqDl-d3-715.webp 715w"><img src="/1d/img/Z3wwqDl-d3-715.jpeg" alt="A string of fairy lights made from the EMF logo spell out LED" width="715" height="143"></picture></a>
+</div>
+<nav>
+    
+    <a href="/1d/5">&lt;- Previous</a>
+    
+</nav>
+
+
+  <main>
+    <h1>6. Making the tricky second game</h1>
+<p>Working with fairy lights gives us a challenge for designing games that are fun and engaging. They only have one dimension - left to right. Platformers or classic arcade game mostly have 2 dimensions - left and right, up and down. 3d games also have a forward and backwards dimension.</p>
+<p>There's also the issue of scale. A 1080p monitor has 2,073,600 pixels. A 4K TV has 8,294,400. We have <strong>50 pixels</strong>.</p>
+<p>So we have to be creative, but the good news is that our screen is already bendy, so let's make the most of that.
+For the next game, we're going to look at adapting a classic: Snake. But because it is not a screen, it's not Solid Snake❗️ No, it's:</p>
+<h2>Bendy Snake</h2>
+<p>Stop Thonny, and change <code>main.py</code> to load <code>games.BendySnake()</code>.
+Run it and see what's going on.</p>
+<p>The snake (green pixels) moves along the fairy lights. When it gets a fruit (yellow pixel) it gets a little bit longer. If it hits the red &quot;wall&quot; the game ends. You can press the button to change direction.</p>
+<p>It is quite easy once you get the hang of it - as long as the fruit does not spawn on top of the wall, you can keep getting longer until you fill the whole string of lights. Unlike the original snake, we can touch our own tail, because otherwise it wouldn't work at all!</p>
+<h2>Tear down this wall (and move it along a bit)</h2>
+<p>First job: Let's make it so the wall moves now and again. That will give a little challenge. Open <code>games/bendysnake.py</code> if you haven't already.</p>
+<p>There's a pre-written method called <code>placewall()</code> right at the bottom which generates a random position for the wall. But when should we run this code? In the past examples we've always done everything reactively - when a button is pressed, or something collides, and so on.</p>
+<p>Here, we'll use a timer to do this every few seconds.</p>
+<p>In the <code>init</code> method near the top, find the first line of code (<code>self.timer = Timer(-1)</code>), and add the second line of code underneath it:</p>
+<pre><code>    self.timer = Timer(-1)
+    self.timer.init(period=5000,callback=self.placeWall)
+</code></pre>
+<p>This code says that every 5000ms (5 seconds), to run the method <code>placeWall</code>. Save and run and try it out.</p>
+<p>Timers like this are extremely useful for lots of games. You can have enemies or powerups spawning regularly, or just a countdown if the players get limited time.</p>
+<h2>The snake should eat its own tail</h2>
+<p>A big problem exists outside the code. When the player goes beyond the edge of the lights, they magically appear at the other end. This feels a bit weird, but the best way to fix that teleporting is to move space itself.</p>
+<picture><source type="image/webp" srcset="/1d/img/mj6C_-pVLR-921.webp 921w"><img src="/1d/img/mj6C_-pVLR-921.jpeg" alt="A screenshot of the movie Event Horizon. Sam Neill's character is explaining how to fold space, by pushing a pen through a folded bit of paper, which is the traditional explanation." width="921" height="495"></picture>
+<p>Following the example from the space travel documentary <em>Event Horizon</em> (RIP Sam), we just need to fold space so that point A and point B coexist. I'm pretty sure that it was effective in the film and nothing bad happened.<br>
+For us that literally means using a bit of tape or tack, and putting point A (the end of the fairy lights) next to point B (the start of the fairy lights) to make a big loop.</p>
+<p>Now when we play the game, the snake feels more natural, it flows around the loop well and the game now functions cleanly.</p>
+<h2>Adjusting Difficulty</h2>
+<p>As in PileUp, we can just make the game run faster to make it more difficult, or slower to be easier.</p>
+<p>But, the cool thing here is that the physical aspect of the fairy lights also changes the difficulty. Try putting a twist half way around your loop, to make a figure of 8 shape. How much harder is it?</p>
+<ul>
+<li>What about having the game draped over two sides of a wall, so players can't see the whole thing in one go, and have to keep running around?</li>
+<li>What about wrapping your fairy lights around yourself, or the player? or both!</li>
+<li>Or impossible mode: have the fairy lights in a big pile on the table.</li>
+</ul>
+<p>The point is: the physical layout of the fairy lights changes the game. This goes for all the games we've looked at, and any games you make yourself. You can also tailor the game to its environment. If you put the game around the door to your tent, you can have the middle of the fairy light (so LED #25) be the &quot;top&quot;, then have a game that has &quot;gravity&quot; around your door. Or if you have a campervan, make the colours match that sweet airbrushed picture of a wizard I assume/hope you have on the side.</p>
+<h2>Next Steps</h2>
+<p>As before, it is ok if you have had enough at this point. However, the last game is quite interesting, because it uses live data from the bars at EMF to make the game work.</p>
+<p><a href="/1d/7">Next -&gt; (Wifi Game)</a></p>
+<p><a href="/1d/">Back to the main page</a></p>
+<h2>Advanced</h2>
+<p>There are several enhancements that can make Bendy Snake a bit more fun:</p>
+<p>At the moment the timer happens every 5 seconds. This is ok but it is still plenty of time to react even if it appears ahead of you.
+We should escalate the tension - every time a wall respawns, the next wall spawns faster.</p>
+<p>To do this, we need a variable to track the current timer period, starting at say 7 seconds (7000ms). Then each time the wall respawns, reduce the timer length by 200ms. This means it will start off slowly changing, then change faster and faster, increasing challenge. You will probably need a minimum, otherwise weirdly the game will get easier -since the wall never spawns directly in front of you, it will always move out of the way.</p>
+<p>You will also need to change the timer to be a <code>ONE_SHOT</code> since it is no longer firing on a given period. Look at the <a href="https://docs.micropython.org/en/latest/library/machine.Timer.html">micropython Timer reference</a> for help.</p>
+<p>Another change is to fix the bug that the fruit can appear on the same space as the wall. It's not so bad with the timer since the wall moves anyway, but it can still happen, and since the fruit is drawn after the wall, it &quot;hides&quot; the wall.</p>
+<p>You can also add more fruit so the escalation happens quicker.</p>
+<p>It is quite hard to tell which direction the snake is going, especially when it is longer. Perhaps change how the tail is drawn so it fades out (or is rainbow coloured?)</p>
+
+  </main>
+  
+<a href="/1d/7">Next -&gt;</a>
+
+<footer></footer>
+</body>

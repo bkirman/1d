@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1d Game Workshop - 5. Making our first game</title>
+  <link rel="stylesheet" href="/1d/css/bundle.css">
+  <link rel="stylesheet" href="/1d/css/custom.css">
+</head>
+<body>
+  <div id="main-header">
+    <a href="/" id="root-link"><picture><source type="image/webp" srcset="/1d/img/Z3wwqDl-d3-715.webp 715w"><img src="/1d/img/Z3wwqDl-d3-715.jpeg" alt="A string of fairy lights made from the EMF logo spell out LED" width="715" height="143"></picture></a>
+</div>
+<nav>
+    
+    <a href="/1d/4">&lt;- Previous</a>
+    
+</nav>
+
+
+  <main>
+    <h1>5. Making our first game</h1>
+<p>We're going to work on a game that has more interactivity. It's a bit like Pressy Pressy meets Tetris, called Pile Up.</p>
+<p>To do this you should open <code>main.py</code> and find the line that says <code>engine.loadGame(games.PressyPressy())</code>. This is the code that tells the game engine which game we want to run when the Plasma is switched on. You can edit this line to load different games and animations. Further down the file there is a list of the games and animations that come pre installed. Let's try a cool animation.</p>
+<p>Edit the line so it now says: <code>engine.loadGame(animations.FireEffect())</code>. Click Play.</p>
+<p>These animations are not interactive (apart from Demo), so are more like traditional animations for fairy lights. You can leave it like this attached to your tent for a more traditional fairy light vibe (i.e. you want your tent to look like it's on fire). Try <code>animations.AlternatingBlinkies()</code> for a more chill one. Feel free to experiment with these later.</p>
+<p>For now, let's load the PileUp game. Change the line to be <code>engine.loadGame(games.PileUp())</code></p>
+<p>Press Play.</p>
+<p>The yellow pixel (the player) moves slowly down the LED strip. When it gets to the bottom it starts again from the top. You might want to lay out your fairy lights so you can see it more clearly. It looks even better suspended from the ceiling or blue tacked to a wall!</p>
+<p>Press the button. It should turn the pixel the player was on red, and then reset the player to the top again. The aim of the game is to turn all the pixels red.</p>
+<p>It works but it's a bit boring so let's add a way for the player to lose the game. We'll change it so that if the player touches a red light, they lose and the game restarts.</p>
+<h2>Game Files</h2>
+<p>In Thonny, at the bottom left, open the folder on the plasma called <code>games</code> and open the file called <code>pileup.py</code>. This is the source code for our &quot;game cartridge&quot;. All the other games and animations have similar structures.</p>
+<p>The code here has loads of comments to help you understand what is happening in this game. Broadly there are three key &quot;methods&quot; (blocks of code) that every game cartridge has:</p>
+<h4>Init</h4>
+<p>This is code that is run when the game is loaded for the first time, it is where we set up any variables or other code we need for our specific game.</p>
+<p>In PileUp it makes a &quot;game board&quot; that we use to track where the red pixels are, and sets the player position.</p>
+<h4>update</h4>
+<p>This code is run by the game engine about 60 times per second, and is where we handle the logic, or the rules of the game.</p>
+<p>In PileUp, this moves the player down one pixel, and also detects if the button has been pressed. If it has been, it changes the game board to keep track of that.</p>
+<h4>draw</h4>
+<p>This code is where we actually change the pixels on the LED strip.</p>
+<p>In PileUp, it cycles through the game board, making the pixels red if there is something there, black/off if there isn't anything. Finally it lights up the pixel where the player is.</p>
+<h2>Adding Danger 💥</h2>
+<p>We want the player to lose if they hit a red light. This is a logical problem: we need to check if the player shares a position on the game board. Then, if they do, make them lose. That means we need to edit the <code>update</code> method. Look through that section of code and find the line that checks if there is a collision.</p>
+<pre><code>if (self.board[self.position] != 0):
+    pass
+</code></pre>
+<p>If you have not done much programming, this does a check: If the part of the game board, at the same position as the player, is not equal to zero, then run the next line of code (<code>pass</code>)</p>
+<p>However <code>pass</code> is just a placeholder - it doesn't do anything. Delete <code>pass</code> and make it match the following code:</p>
+<pre><code>if (self.board[self.position] != 0): 
+    gameover(engine)
+    self.init(engine)
+</code></pre>
+<p>Remember that Python is strict about indentation. Make sure the code is lined up properly. Especially, the two lines underneath the <code>if</code> should be aligned further right than the <code>if</code> (see above). This tells python to only run that code if the condition is met. Otherwise the player would always be losing all the time!</p>
+<p>This code does two things. First it runs a little &quot;game over&quot; animation that flashes the LED strip red on and off a few times. Then, <code>self.init(engine)</code> basically reloads the cartridge, which sets the game back to the start again.</p>
+<h2>Running the game</h2>
+<p>If you try and click play here, you will probably get an error. This is because we can't run this code directly, we have to run it through the main code. So open <code>main.py</code> in Thonny again (it probably is open in a tab), and play from there. It will load your cartridge and run it.</p>
+<p>Try and see how many lights you can manage to turn red before losing. Timing is everything, it will take a bit of practice!</p>
+<h2>Tweaks</h2>
+<p>Great work! Before we move on to the next game, let's have a quick look at some other bits of the game that are good to understand:</p>
+<h3>Changing the Difficulty</h3>
+<p>There's a line at the bottom of the <code>draw</code> method that says <code>time.sleep(0.1)</code>. This forces the Plasma to wait for 0.1 seconds. This just makes the game a bit slower. Try changing this value to make the game faster (try 0.0, or 0.05) or slower (try 0.5 or 1.0). The slower speeds make the button laggy - you have to be holding the button when the <code>sleep</code> ends.</p>
+<h3>Changing the Colours</h3>
+<p>Right near the bottom of the file there is a line that looks like this:</p>
+<pre><code>display.set_rgb(self.position, 120, 120, 0)
+</code></pre>
+<p>This code tells the Fairy lights to set the colour of a specific fairy light (the one at <code>self.position</code> - the location of the player) and gives three numbers: <code>120,120,0</code>.</p>
+<p>Each fairy light is actually three LEDs - one red, one green, and one blue. Just like pixels on televisions, computer monitors and phone screens. When we mix these colours together in different brightnesses, it gives the impression of more complex colours. The value for each colour is between 0 and 255, where 0 is off, and 255 is maximum brightness. So our current code says that the pixel where the player is should have the red brightness set to <code>120</code>, the green brightness to <code>120</code>, and the blue brightness to <code>0</code> (i.e. off). When we mix red and green in equal quantities in additive colour (light) we get yellow. For more background on RGB <a href="https://en.wikipedia.org/wiki/RGB_color_model">check out this wikipedia article</a>.</p>
+<p>Have a go at changing the colour of the player. You can either just experiment by changing these three values to any numbers between 0 and 255, or by using a tool like <a href="https://colorpicker.me">this online RGB colour picker</a> to pick an interesting colour and then change the R, G, and B numbers to match.</p>
+<p>Some things to note are that this is not an exact science - some colours don't come out as well as others. For example, we don't really have a &quot;black&quot; because our leds are encased in a white blob. So dark colours just look faint.</p>
+<p>You should also avoid using maximum brightness, and especially maximum white (255,255,255). For two reasons: first, it is a bit too bright! Especially at night, one LED at max brightness will keep you awake. Secondly, the higher the brightness the more power you are using. If you turn all the LEDs on maximum brightness white all at once, <em>you might damage the Plasma</em>, or just drain your power bank really quickly.</p>
+<p>I strongly recommend just thinking of 128 as the maximum, instead of 255. This gives plenty of wiggle room, and is still bright enough (look at the yellow that 120,120,0 made - it is fine).</p>
+<h2>Next Steps</h2>
+<p>At this point, if you are finding this tricky, or are running out of time, it is fine to stop here. You have a game, but you also know how to change the game and load the samples. Look at the range of examples in <code>main.py</code> and the other games and animations. Try loading them and also try looking at their code (in the <code>games</code> and <code>animations</code> folders). There is a bunch of variety, and you can enhance or edit any of them.</p>
+<p>If you can manage a little bit more, but maybe not an entire game, do the <strong>extra</strong> bit below to have more fun with rainbows.</p>
+<p>If you want to keep going, next we'll look at a Snake game.</p>
+<p><a href="/1d/6">Next -&gt; (Snake Game)</a></p>
+<p>You can also skip ahead to the game that uses wifi to connect to the EMF bars!</p>
+<p><a href="/1d/7">Skip -&gt; (Wifi Game)</a></p>
+<p>Remember: this guide and all the code is available online at this address throughout EMF and beyond. You can always come back to it another time and pick up where you left off. I'm around the whole event if you need any help or if anything breaks or needs soldering.</p>
+<h2>Extra</h2>
+<p>We talked about RGB above, but when programming LEDs, you often want to do calculations on colour, and RGB can be awkward for that. Instead we use <a href="https://en.wikipedia.org/wiki/HSL_and_HSV">HSV (Hue, Saturation, Value)</a>. RGB makes more sense in our brains, but HSV makes it easier to transition between colours logically.
+Each of H,S, and V is a value between 0 and 1.0. Changing H changes the colour in a circular way (0.0: red, 0.3: green, 0.5: cyan, 0.7: purple, 1.0: red again), changing S changes the saturation (0.0: grey, 1.0: maximum vividness) and V changes brightness (0: off, 1.0: full brightness)</p>
+<p>For example of why this is handy, as mentioned above, it's best to keep brightness to about half at maximum. In RGB that means changing every value, but in HSV, we only need to change the &quot;V&quot;.</p>
+<p>Replace the following line:</p>
+<pre><code>display.set_rgb(self.position, 120, 120, 0)
+</code></pre>
+<p>With the equivalent in HSV:</p>
+<pre><code>display.set_hsv(self.position, 0.17, 1.0, 0.6)
+</code></pre>
+<p>As before you can use <a href="https://colorpicker.me">the online colour picker</a>, just look at the Hue and Saturation values. The &quot;V&quot; can be left as 0.6 - the brightness is now independent of the colour.</p>
+<p>HSV is particularly great for one thing we love: rainbows 🌈
+Because the hue value is just between 0.0 and 1.0, we can cycle through it and make things colourful easily. Try changing the line to this:</p>
+<pre><code>display.set_hsv(self.position, (self.position/50.0), 1.0, 0.6)
+</code></pre>
+<p>Now the colour of the player changes based on how far along the LED strip it is (so, its position divided by the length of the strip: 50 in this case, gives a number between 0 and 1.0, which we use as the hue value). The saturation and value stay the same for all colours.</p>
+<h2>Advanced</h2>
+<p>The walls are always red, but the way we set the colour looks like this:</p>
+<pre><code>display.set_hsv(i, self.board[i], 1.0, 0.6)
+</code></pre>
+<p>So the hue is actually the value of the position in the game board. If you figure out where that is set, you can store any value between 0.0 and 1.0 and have the board use variable colours too. maybe based on position, but also many based on time? so the game board can turn more red as more walls are built?</p>
+<p>Careful: the game can get very confusing if it is a multicolour mayhem!</p>
+<p>Also, look in <code>utils/gameover.py</code> - this is the mini animation that gets played when the player loses. Have a go editing this and making your own game over scene. Maybe a cylon/kitt style wipe? It is shared between the next few games, so any changes there will also affect the next examples.</p>
+
+  </main>
+  
+<a href="/1d/6">Next -&gt;</a>
+
+<footer></footer>
+</body>

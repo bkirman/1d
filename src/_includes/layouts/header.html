@@ -1,7 +1,9 @@
 <div id="main-header">
-    <a href="/" id="root-link">hello</a>
+    <a href="/" id="root-link"><img src="/images/led.png" alt="A string of fairy lights made from the EMF logo spell out LED"/></a>
 </div>
 <nav>
+    {% if prev %}
     <a href="{{ prev }}">&lt;- Previous</a>
+    {% endif %}
 </nav>
 
