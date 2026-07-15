@@ -23,7 +23,9 @@ You *might* need a USB C-C cable if your computer doesn't have any USB-A ports. 
 It is *nice* to have a power bank to run the games from without a computer later, but also any powered USB port can work. 
 
 # The Kit
-The kit contains the following items. If you are following along outside EMF, this is your shopping list. If you are in EMF you can skip this bit.
+You can skip this section if you bought the kit in the EMF workshop.
+
+The kit contains the following items. If you are following along outside EMF, or missed the workshop, this is your shopping list. 
 - A [Pimoroni Plasma 2350W](https://shop.pimoroni.com/products/plasma-2350-w) microcomputer. This is based on the Raspberry Pi Pico 2350 (W), and code is mostly compatible but we will use the Pimoroni plasma library so it will need adapting.
 - A length of WS2812B addressable LED lights (5m/50 lights is good, more is always fun too!)
 - An appropriate USB cable to connect a computer/power bank to the Plasma. 
@@ -34,6 +36,8 @@ The kit contains the following items. If you are following along outside EMF, th
     - The EMF kit has a 2-pin header soldered to the TX and GND pins nearest the USB port. When you get to that part of the guide either solder directly or add headers/other connectors.
 
 Pimoroni sell a [Wireless Plasma kit (No Bottle)](https://shop.pimoroni.com/products/wireless-plasma-kit?variant=40372594704467) that includes a good LED strip, the Plasma 2350W and a USB A-C cable.
+
+You must first replace all the code on the Plasma with [the workshop code, available for free from the repository](https://github.com/bkirman/1d_engine). This has already been done for the EMF kits
 
 # The Guide
 
